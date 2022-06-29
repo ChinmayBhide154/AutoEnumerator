@@ -16,17 +16,21 @@ def scan():
 def click():
     # scan()
     print("Hello")
+    print(ip_entry.get())
 
 window = Tk()
 window.title("Auto-Enumerator")
 window.minsize(550, 350)
 window.maxsize(550, 350)
 
-# create label
+# create textbox
+ip_entry = Entry(window, width=20, bg="black", fg="white")
+print(ip_entry.get())
+ip_entry.place(x=190, y=200)
 
 
 # submit button:
-submit = Button(window, text="Scan", width=10, height=5, command=click)
-submit.place(x=100, y=100)
+submit = Button(window, text="Scan", width=12, height=1, command=click)
+submit.place(x=210, y=250)
 
 window.mainloop()
