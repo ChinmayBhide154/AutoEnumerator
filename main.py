@@ -2,21 +2,18 @@ from Scanner import Scanner
 from tkinter import *
 from DataParser import DataParser
 
-file_manager = DataParser(None, None, "nmap2.txt", "nikto.txt", "gobuster.txt")
+file_manager = DataParser("gobuster.txt", "w", "nmap2.txt", "nikto.txt", "gobuster.txt")
 
 metasploitable_ip = "192.168.1.83"
-
+user_scanner = Scanner(metasploitable_ip, None, file_manager)
 def scan():
     print("scanning started")
-    user_scanner = Scanner(metasploitable_ip, None)
-    port_list = user_scanner.get_open_ports()
+    #port_list = user_scanner.get_open_ports()
     user_scanner.enumerate_p80_p443()
-    user_scanner.enumerate_all()
+    #user_scanner.enumerate_all()
 
 def click():
-    # scan()
-    print("Hello")
-    print(ip_entry.get())
+    scan()
 
 window = Tk()
 window.title("Auto-Enumerator")

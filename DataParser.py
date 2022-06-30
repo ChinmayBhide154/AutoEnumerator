@@ -1,6 +1,6 @@
 import subprocess
 import os
-from Scanner import Scanner
+
 
 class DataParser:
 
