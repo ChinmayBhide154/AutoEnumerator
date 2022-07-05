@@ -96,7 +96,7 @@ class Scanner:
 
             # execute nikto
             self.file_name = self.nikto_file_name
-            self.write_to_file("nikto -h " + self.ip_address)
+            self.write_to_file("nikto -h " + self.target)
 
         if Scanner.find_port(self, 443):
             self.file_name = self.gobuster_dir_file_name
