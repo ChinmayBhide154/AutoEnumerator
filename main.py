@@ -1,3 +1,4 @@
+import time
 from Scanner import Scanner
 from tkinter import *
 from tkinter import ttk
@@ -20,7 +21,9 @@ def scan():
         textf2.insert(tk.INSERT, string + ", ")
 
     # vuln assessment
+
     user_scanner.enumerate_p80_p443()
+    time.sleep(60)
     with open("nikto.txt", "r") as file:
         for line in file:
             stripped_line = line.strip()
@@ -30,6 +33,11 @@ def scan():
         for line in file:
             stripped_line = line.strip()
             textf5.insert(tk.INSERT, stripped_line + "\n")
+
+    with open("nmap2.txt", "r") as file:
+        for line in file:
+            stripped_line = line.strip()
+            textf4.insert(tk.INSERT, stripped_line + "\n")
 
     print(strings)
 

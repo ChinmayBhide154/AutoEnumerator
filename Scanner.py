@@ -83,20 +83,21 @@ class Scanner:
         return ports
 
     def enumerate_nmap_vulners(self):
-        file_nmap = open(self.nmap_file_name, self.permissions)
-        command = "nmap --script vulners -sV " + self.ip_address
-        subprocess.Popen(command, stdout=file_nmap, shell=True)
-        file_nmap.close()
+        self.file_name = self.nmap_file_name
+        self.write_to_file("nmap --script vulners -sV " + self.target)
 
     def enumerate_p80_p443(self):
         if Scanner.find_port(self, 80):
             # execute gobuster dir
-            # self.file_name = self.gobuster_dir_file_name
-            # self.write_to_file("gobuster dir -u http://" + self.target + " -w usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt")
+            self.file_name = self.gobuster_dir_file_name
+            self.write_to_file("gobuster dir -u http://" + self.target + " -w usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt")
 
             # execute nikto
             self.file_name = self.nikto_file_name
             self.write_to_file("nikto -h " + self.target)
+
+            self.file_name = self.nmap_file_name
+            self.write_to_file("nmap --script vulners -sV " + self.target)
 
         if Scanner.find_port(self, 443):
             self.file_name = self.gobuster_dir_file_name
