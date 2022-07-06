@@ -91,8 +91,8 @@ class Scanner:
     def enumerate_p80_p443(self):
         if Scanner.find_port(self, 80):
             # execute gobuster dir
-            self.file_name = self.gobuster_dir_file_name
-            self.write_to_file("gobuster dir -u http://" + self.target + " -w usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt")
+            # self.file_name = self.gobuster_dir_file_name
+            # self.write_to_file("gobuster dir -u http://" + self.target + " -w usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt")
 
             # execute nikto
             self.file_name = self.nikto_file_name
@@ -110,5 +110,7 @@ class Scanner:
         file_ = open(self.file_name, "w")
         subprocess.Popen(command, cwd="/", stdout=file_, shell=True)
         file_.close()
+
+
 
 
