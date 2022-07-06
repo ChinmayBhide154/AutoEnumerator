@@ -1,14 +1,13 @@
-Security testing requires enumeration. Often, this involves port scanning, and then determining the subsequent enumeration steps based on the open ports.
+# AutoEnumerator
+AutoEnumerator is a project intended for those with no penetration testing experience. AutoEnumerator allows various penetration testing tools such as nmap, nikto, and gobuster to run one after the other with a simple click of a button.
 
-This often requires the penetration tester to exectute multiple commands. However, due to the vast selection of tools available, they take a lot of time to learn.
+# Usage and Installation
+AutoEnumerator is currently only supported on a Linux. To get this repository, simply type ```git clone https://github.com/ChinmayBhide154/AutoEnumerator```
+Furthermore, if the user is not using Kali Linux, (a specific penetration testing distribution of Linux) they will have to install the following tools on their machine before proceding:
+ - Nmap (along with the vulners script)
+ - Nikto
+ - Gobuster
 
-This project is an automated security scanner which makes scanning and enumeration simple by taking control and executing shell commands on your behalf. It is great
-for those with no penetration testing knowledge that just want to scan their app for vulnerabilities.
+# Code of Conduct
+Do not use AutoEnumerator for unethical purposes. Only use on apps you have permission to test.
 
-Currently, this scanner only supports Linux. It is recommended to install a Kali Linux Machine with Virtual Box, Vmware, or another hypervisor. If this is not an option, install the following tools on your machine before using:
- - nmap
- - dirb
-
-This tool is currently in development and is not ready for use yet.
-
-Please be ethical when using this tool and use it only on machines you are authorized to test.
