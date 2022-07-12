@@ -1,3 +1,4 @@
+
 import time
 from Scanner import Scanner
 from tkinter import *
