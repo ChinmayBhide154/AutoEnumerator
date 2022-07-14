@@ -1,0 +1,2 @@
+Not shown: 999 closed tcp ports (conn-refused)
+21/tcp open  ftp

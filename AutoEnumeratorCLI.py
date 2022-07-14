@@ -4,7 +4,7 @@ import os
 
 app = typer.Typer()
 
-scanner = Scanner(None, "w", "nmap2.txt", "nikto.txt", "gobuster.txt", None)
+scanner = Scanner(None, "w", "nmap2.txt", "nikto.txt", "gobuster.txt", None, "gobuster_dir_wordlist")
 # open the ascii Art and print it
 with open("asciiArt.txt", "r") as file:
     for line in file:
@@ -15,7 +15,8 @@ with open("asciiArt.txt", "r") as file:
 def command(command: str, ip_address: str):
     scanner.target = ip_address
     if command == "run":
-        os.system("nmap " + scanner.target)
+        scanner.enumerate_gobuster_dir()
+        scanner.enumerate_nikto()
 
 
 

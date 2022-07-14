@@ -1,9 +1,9 @@
 - Nikto v2.1.6
 ---------------------------------------------------------------------------
-+ Target IP:          192.168.1.80
-+ Target Hostname:    192.168.1.80
++ Target IP:          192.168.1.65
++ Target Hostname:    192.168.1.65
 + Target Port:        80
-+ Start Time:         2022-07-05 16:57:22 (GMT-7)
++ Start Time:         2022-07-13 01:20:26 (GMT-4)
 ---------------------------------------------------------------------------
 + Server: Apache/2.2.8 (Ubuntu) DAV/2
 + Retrieved x-powered-by header: PHP/5.2.4-2ubuntu5.10
@@ -23,7 +23,7 @@
 + OSVDB-12184: /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
 + OSVDB-12184: /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
 + OSVDB-3092: /phpMyAdmin/changelog.php: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
-+ Server may leak inodes via ETags, header found with file /phpMyAdmin/ChangeLog, inode: 92462, size: 40540, mtime: Tue Dec  9 09:24:00 2008
++ Server may leak inodes via ETags, header found with file /phpMyAdmin/ChangeLog, inode: 92462, size: 40540, mtime: Tue Dec  9 12:24:00 2008
 + OSVDB-3092: /phpMyAdmin/ChangeLog: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
 + OSVDB-3268: /test/: Directory indexing found.
 + OSVDB-3092: /test/: This might be interesting...
@@ -33,7 +33,7 @@
 + /phpMyAdmin/: phpMyAdmin directory found
 + OSVDB-3092: /phpMyAdmin/Documentation.html: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
 + OSVDB-3092: /phpMyAdmin/README: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
-+ 8728 requests: 2 error(s) and 27 item(s) reported on remote host
-+ End Time:           2022-07-05 16:58:36 (GMT-7) (74 seconds)
++ 8726 requests: 0 error(s) and 27 item(s) reported on remote host
++ End Time:           2022-07-13 01:20:56 (GMT-4) (30 seconds)
 ---------------------------------------------------------------------------
 + 1 host(s) tested

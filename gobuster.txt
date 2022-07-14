@@ -2,21 +2,23 @@
 Gobuster v3.1.0
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
-[+] Url:                     http://192.168.1.80
+[+] Url:                     http://192.168.1.65
 [+] Method:                  GET
 [+] Threads:                 10
-[+] Wordlist:                usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Wordlist:                gobuster_dir_wordlist.txt
 [+] Negative Status codes:   404
 [+] User Agent:              gobuster/3.1.0
 [+] Timeout:                 10s
 ===============================================================
-2022/07/05 16:16:26 Starting gobuster in directory enumeration mode
+2022/07/13 01:24:57 Starting gobuster in directory enumeration mode
 ===============================================================
 /index                (Status: 200) [Size: 891]
-/test                 (Status: 301) [Size: 316] [--> http://192.168.1.80/test/]
-/twiki                (Status: 301) [Size: 317] [--> http://192.168.1.80/twiki/]
-
-[!] Keyboard interrupt detected, terminating.
+/test                 (Status: 301) [Size: 316] [--> http://192.168.1.65/test/]
+/twiki                (Status: 301) [Size: 317] [--> http://192.168.1.65/twiki/]
+/tikiwiki             (Status: 301) [Size: 320] [--> http://192.168.1.65/tikiwiki/]
+/phpinfo              (Status: 200) [Size: 47984]                                  
+/server-status        (Status: 403) [Size: 298]                                    
+/phpMyAdmin           (Status: 301) [Size: 322] [--> http://192.168.1.65/phpMyAdmin/]
 ===============================================================
-2022/07/05 16:16:27 Finished
+2022/07/13 01:25:29 Finished
 ===============================================================
