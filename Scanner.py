@@ -109,7 +109,6 @@ class Scanner:
 
 
 
-
 '''
     def enumerate_nmap_vulners(self):
         self.file_name = self.nmap_file_name

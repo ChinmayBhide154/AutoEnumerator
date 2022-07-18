@@ -3,6 +3,7 @@ from Scanner import Scanner
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from threading import Thread
 import os
 
 window_width = 1000
@@ -10,6 +11,8 @@ window_height = 500
 
 scanner = Scanner(None, "w", "nmap2.txt", "nikto.txt", "gobuster.txt", None, "gobuster_dir_wordlist.txt",
                   "ftp.txt", False, False, False, False, False)
+
+
 
 def init_scan_choices():
     port_scan_choice = var1.get()
@@ -39,45 +42,62 @@ def init_scan_choices():
 def scan():
     init_scan_choices()
 
-    '''
-    files = scanner.enumerate_ftp()
-    for file in files:
-        textf6.insert(tk.INSERT, file)
-
-    # submit.destroy()
     print("scanning started")
 
+    if scanner.ftp_is_on:
+        files = scanner.enumerate_ftp()
+        for file in files:
+            textf6.insert(tk.INSERT, file)
+
+    else:
+        textf6.insert(tk.INSERT, "Results are unavailable because port 21 is not open")
+
     # open ports
-    port_list = scanner.get_open_ports()
-    strings = [str(port) for port in port_list]
-    print(strings)
-    for string in strings:
-        textf2.insert(tk.INSERT, string + ", ")
+    if scanner.nmap_is_on:
+        port_list = scanner.get_open_ports()
+        strings = [str(port) for port in port_list]
+        print(strings)
+        for string in strings:
+            textf2.insert(tk.INSERT, string + ", ")
+
+    else:
+        textf2.insert(tk.INSERT, "Results are unavailable because port scanning is not enabled")
 
     # vulnerability assessment
-    scanner.enumerate_nikto_file_write()
-    time.sleep(30)
-    with open("nikto.txt", "r") as file:
-        for line in file:
-            stripped_line = line.strip()
-            textf3.insert(tk.INSERT, stripped_line + "\n")
+    if scanner.nikto_is_on:
+        scanner.enumerate_nikto_file_write()
+        time.sleep(30)
+        with open("nikto.txt", "r") as file:
+            for line in file:
+                stripped_line = line.strip()
+                textf3.insert(tk.INSERT, stripped_line + "\n")
 
-    scanner.enumerate_gobuster_dir_file_write()
-    time.sleep(30)
-    with open("gobuster.txt", "r") as file:
-        for line in file:
-            stripped_line = line.strip()
-            textf5.insert(tk.INSERT, stripped_line + "\n")
+    else:
+        textf3.insert(tk.INSERT, "Results are unavailable because port scanning is not enabled")
 
-    scanner.enumerate_nmap_vulners_file_write()
-    time.sleep(30)
-    with open("nmap2.txt", "r") as file:
-        for line in file:
-            stripped_line = line.strip()
-            textf4.insert(tk.INSERT, stripped_line + "\n")
+    if scanner.gobuster_dir_is_on:
+        scanner.enumerate_gobuster_dir_file_write()
+        time.sleep(30)
+        with open("gobuster.txt", "r") as file:
+            for line in file:
+                stripped_line = line.strip()
+                textf5.insert(tk.INSERT, stripped_line + "\n")
 
-    print(strings)
-    '''
+    else:
+        textf5.insert(tk.INSERT, "Results are unavailable because port scanning is not enabled")
+
+    if scanner.vulners_is_on:
+        scanner.enumerate_nmap_vulners_file_write()
+        time.sleep(30)
+        with open("nmap2.txt", "r") as file:
+            for line in file:
+                stripped_line = line.strip()
+                textf4.insert(tk.INSERT, stripped_line + "\n")
+
+    else:
+        textf4.insert(tk.INSERT, "Results are unavailable because port scanning is not enabled")
+
+    print("Scanning ended")
 
 def click():
     scanner.target = target.get()
