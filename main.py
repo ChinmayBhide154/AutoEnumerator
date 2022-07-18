@@ -8,25 +8,53 @@ import os
 window_width = 1000
 window_height = 500
 
-scanner = Scanner(None, "w", "nmap2.txt", "nikto.txt", "gobuster.txt", None, "gobuster_dir_wordlist.txt", "ftp.txt")
+scanner = Scanner(None, "w", "nmap2.txt", "nikto.txt", "gobuster.txt", None, "gobuster_dir_wordlist.txt",
+                  "ftp.txt", False, False, False, False, False)
 
+def init_scan_choices():
+    port_scan_choice = var1.get()
+    vuln_scan_choice = var2.get()
+    cve_scan_choice = var3.get()
+    web_dir_bf_choice = var4.get()
+    ftp_files_view_choice = var5.get()
+
+    if port_scan_choice == 1:
+        scanner.nmap_is_on = True
+
+    if vuln_scan_choice == 1:
+        scanner.nikto_is_on = True
+
+    if cve_scan_choice == 1:
+        if scanner.nmap_is_on:
+            cve_scan_choice = True
+
+    if web_dir_bf_choice == 1:
+        if scanner.nmap_is_on:
+            web_dir_bf_choice = True
+
+    if ftp_files_view_choice == 1:
+        if scanner.nmap_is_on:
+            ftp_files_view_choice = True
 
 def scan():
+    init_scan_choices()
+
+    '''
     files = scanner.enumerate_ftp()
     for file in files:
         textf6.insert(tk.INSERT, file)
 
-
     # submit.destroy()
     print("scanning started")
-    #open ports
+
+    # open ports
     port_list = scanner.get_open_ports()
     strings = [str(port) for port in port_list]
     print(strings)
     for string in strings:
         textf2.insert(tk.INSERT, string + ", ")
 
-    # vuln assessment
+    # vulnerability assessment
     scanner.enumerate_nikto_file_write()
     time.sleep(30)
     with open("nikto.txt", "r") as file:
@@ -49,7 +77,7 @@ def scan():
             textf4.insert(tk.INSERT, stripped_line + "\n")
 
     print(strings)
-
+    '''
 
 def click():
     scanner.target = target.get()
@@ -135,14 +163,43 @@ textf6.insert(tk.INSERT, "")
 textf6.pack()
 
 # create textbox
-target = Entry(frame1, width=20, bg="black", fg="white")
-target.place(x=190, y=200)
+target = Entry(frame1, width=15, bg="black", fg="white")
+target.place(x=window_width / 2 - 150, y=window_height / 2 - 80)
+
+# Checkbox options
+var1 = tk.IntVar()
+var2 = tk.IntVar()
+var3 = tk.IntVar()
+var4 = tk.IntVar()
+var5 = tk.IntVar()
+
+
+c1 = tk.Checkbutton(frame1, text='Enable Port Scanning', variable=var1, onvalue=1, offvalue=0)
+c1.pack()
+c1.place(x=window_width / 2, y=window_height / 2 - 120)
+
+c2 = tk.Checkbutton(frame1, text='Enable General Vulnerability Assessment', variable=var2, onvalue=1, offvalue=0)
+c2.pack()
+c2.place(x=window_width / 2, y=window_height / 2 - 90)
+
+c3 = tk.Checkbutton(frame1, text='Enable CVE Findings', variable=var3, onvalue=1, offvalue=0)
+c3.pack()
+c3.place(x=window_width / 2, y=window_height / 2 - 60)
+
+c4 = tk.Checkbutton(frame1, text='Enable Web Directory Brute Forcing', variable=var4, onvalue=1, offvalue=0)
+c4.pack()
+c4.place(x=window_width / 2, y=window_height / 2 - 30)
+
+c5 = tk.Checkbutton(frame1, text='Enable FTP File Download', variable=var5, onvalue=1, offvalue=0)
+c5.pack()
+c5.place(x=window_width / 2, y=window_height / 2)
+
 
 scanner.target = target.get()
 print(scanner.target)
 
 # submit button:
 submit = Button(frame1, text="Scan", width=12, height=1, command=click)
-submit.place(x=210, y=250)
+submit.place(x=window_width / 2 - 150, y=window_height / 2 - 40)
 
 window.mainloop()

@@ -1,11 +1,11 @@
 import os
 import subprocess
-# from IPy import IP
 import re
 from ftplib import FTP
 
 class Scanner:
-    def __init__(self, file_name, permissions, nmap_file_name, nikto_file_name, gobuster_dir_file_name, target, gobuster_dir_wordlist, ftp_file_name):
+    def __init__(self, file_name, permissions, nmap_file_name, nikto_file_name, gobuster_dir_file_name, target,
+                 gobuster_dir_wordlist, ftp_file_name, nmap_is_on, nikto_is_on, vulners_is_on, gobuster_dir_is_on, ftp_is_on):
         self.file_name = file_name
         self.permissions = permissions
         self.nmap_file_name = nmap_file_name
@@ -14,6 +14,11 @@ class Scanner:
         self.target = target
         self.gobuster_dir_wordlist = gobuster_dir_wordlist
         self.ftp_file_name = ftp_file_name
+        self.nmap_is_on = nmap_is_on
+        self.nikto_is_on = nikto_is_on
+        self.vulners_is_on = vulners_is_on
+        self.gobuster_dir_is_on = gobuster_dir_is_on
+        self.ftp_is_on = ftp_is_on
 
     def find_port(self, port_number):
         port_list = self.get_open_ports()
@@ -22,7 +27,6 @@ class Scanner:
                 return True
 
         return False
-
 
     def find_index_of_port(self, port_number):
         port_list = self.get_open_ports()
